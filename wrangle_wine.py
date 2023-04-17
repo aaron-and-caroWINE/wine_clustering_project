@@ -153,7 +153,17 @@ def scale_data(train,
     If return_scalar is True, the scaler object will be returned as well
     '''
 
-    columns_to_scale = ['fixed_acidity', 'volatile_acidity', 'citric_acid', 'residual_sugar', 'chlorides', 'free_sulfur_dioxide', 'total_sulfur_dioxide', 'density', 'pH', 'sulphates', 'alcohol']
+    columns_to_scale = ['fixed_acidity',
+                        'volatile_acidity', 
+                        'citric_acid', 
+                        'residual_sugar',
+                        'chlorides', 
+                        'free_sulfur_dioxide', 
+                        'total_sulfur_dioxide', 
+                        'density', 
+                        'pH', 
+                        'sulphates', 
+                        'alcohol']
 
     # make copies of our original data so we dont gronk up anything
     train_scaled = train.copy()
