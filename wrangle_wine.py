@@ -100,7 +100,7 @@ def summarize(df):
 
 def remove_outliers(df, k=1.5):
     col_qs = {}
-    df_cols = df_cols=df.columns
+    df_cols = df.columns
     df_cols = df_cols.to_list()
     df_cols.remove('red_or_white')
 
@@ -153,7 +153,7 @@ def scale_data(train,
     If return_scalar is True, the scaler object will be returned as well
     '''
 
-    columns_to_scale = ['fixed acidity', 'volatile acidity', 'citric acid', 'residual sugar', 'chlorides', 'free sulfur dioxide', 'total sulfur dioxide', 'density', 'pH', 'sulphates', 'alcohol']
+    columns_to_scale = ['fixed_acidity', 'volatile_acidity', 'citric_acid', 'residual_sugar', 'chlorides', 'free_sulfur_dioxide', 'total_sulfur_dioxide', 'density', 'pH', 'sulphates', 'alcohol']
 
     # make copies of our original data so we dont gronk up anything
     train_scaled = train.copy()
@@ -181,6 +181,15 @@ def wrangle_wine():
     # acquire dataframes from locally saved version and merge
     df = pd.merge(get_red_wine(), get_white_wine(), how='outer')
 
+    df = df.rename(columns={'fixed acidity': 'fixed_acidity',
+                             'volatile acidity': 'volatile_acidity',
+                               'citric acid': 'citric_acid',
+                               'residual sugar': 'residual_sugar',
+                               'free sulfur dioxide': 'free_sulfur_dioxide',
+                                'total sulfur dioxide': 'total_sulfur_dioxide'})
+
+    print(df.columns)
+
     # removes outliers from all columns except for the string 'red_or-white' column
     df = remove_outliers(df, k=1.5)
 
@@ -193,7 +202,7 @@ def wrangle_wine():
     # scale data
     train_scaled, validate_scaled, test_scaled = scale_data(train, validate, test, return_scaler=False)
 
-    return train_scaled, validate_scaled, test_scaled
+    return train, validate, test, train_scaled, validate_scaled, test_scaled
 
 # --------------------- Visualizations ------------------------
 
@@ -276,4 +285,15 @@ def viz_explore(train, target):
     sns.heatmap(corr, cmap='crest', annot=True, mask=np.triu(corr))
     plt.show()
     
+def boxplot(train):
+    target = 'quality'
+    explore_cols = train.columns.to_list()
 
+    for col in explore_cols:
+        if col != target:
+            print(f'Bivariate assessment of feature {col}:')
+            sns.boxplot(data = train, x = train[target], y = train[col], palette='crest')
+            plt.show()
+    print('_____________________________________________________')
+    print('_____________________________________________________')
+    print()
