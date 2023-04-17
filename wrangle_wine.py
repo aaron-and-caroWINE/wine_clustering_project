@@ -193,7 +193,7 @@ def wrangle_wine():
     # scale data
     train_scaled, validate_scaled, test_scaled = scale_data(train, validate, test, return_scaler=False)
 
-    return train_scaled, validate_scaled, test_scaled
+    return train, validate, test, train_scaled, validate_scaled, test_scaled
 
 # --------------------- Visualizations ------------------------
 
