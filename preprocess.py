@@ -232,7 +232,7 @@ def preprocess_clustering_wine():
 #     test['is_high_quality'] = (test.quality == 7) | (test.quality == 6)
     
     # set list of num columns
-    num_cols = train.columns.drop(['white_wine', 'quality'])
+    num_cols = train.drop('quality', 'red_or_white')
     
     # xtrain, ytrain
     X_train = train[num_cols]
@@ -250,4 +250,4 @@ def preprocess_clustering_wine():
     X_train_scaled, X_validate_scaled, X_test_scaled = scale_data(X_train, num_cols, 'minmax', X_validate=X_validate, X_test=X_test)
     
     # exit function and return
-    return X_train_scaled, X_validate_scaled, X_test_scaled, y_train, y_validate, y_test
+    return X_train_scaled, X_validate_scaled, X_test_scaled, X_train, X_validate, X_test, y_train, y_validate, y_test
