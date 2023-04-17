@@ -1,6 +1,7 @@
 # imports
 import pandas as pd
 from sklearn.preprocessing import MinMaxScaler, RobustScaler, StandardScaler
+from wrangle_wine import wrangle_wine
 
 
 ### SCALING FUNCTIONS
