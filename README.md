@@ -51,7 +51,9 @@ What is the relationship between wine quality and the features in the dataset?
 4. Run notebook
 
 ## Takeaways
-- 
+- Classification ML algorithms are more appropriate for this dataset
+- No appropriate models beat basline with current feature engineering
 
 ## Recommendations
-- 
+- We do not recommend using this model in production
+- We recommend spending more time on feature engineering
