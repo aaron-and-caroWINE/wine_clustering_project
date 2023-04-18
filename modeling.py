@@ -113,6 +113,11 @@ def regression_eval_dict():
 
 def clustering_viz():
 
+    '''
+    Makes a clustering model using 4 centroids with the specified mdeling features to create clusters
+    that will be used for modelig features. The function then creates two subplots visualizing the 
+    difference in the clusters assigned to the actual target quality rating.
+    '''
   
     # lets make a clustering object from sklearn
     clustering_feats = ['alcohol', 'density', 'chlorides', 'volatile_acidity']
@@ -145,6 +150,11 @@ def clustering_viz():
     plt.show()
 
 def test_best_model():
+
+    '''
+    Creates a random forest model with a max depth of 4 to run the test dataset on. The accuracy score
+    is then generated using the test dataset.
+    '''
 
     rf = RandomForestClassifier(max_depth=4)
     rf.fit(X_train, y_train['quality'])
