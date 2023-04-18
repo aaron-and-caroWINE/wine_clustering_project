@@ -11,16 +11,17 @@ from sklearn.linear_model import LinearRegression
 import numpy as np
 import wrangle_wine as w
 import preprocess as p
+from sklearn.cluster import KMeans
+
+from sklearn.ensemble import RandomForestClassifier
 
 X_train_scaled, X_validate_scaled, X_test_scaled, X_train, X_validate, X_test, y_train, y_validate, y_test = p.preprocess_clustering_wine()
 
 def classification_eval_dict():
 
     '''
-    creates a dictionary containing the evaluation metrics for the classification models used with the 
-    clusters as a feature
-    
-     
+    Creates a dictionary containing the evaluation metrics for the classification models used with the 
+    clusters as a feature. Publishes the transposed dictionary as a pandas dataframe.
     '''
 
     class_model_dict = {
@@ -65,6 +66,11 @@ def classification_eval_dict():
 
 def regression_eval_dict():
 
+    '''
+    Creates a dictionary containing the evaluation metrics for the linear regression models used 
+    with the clusters as a feature. Publishes the transposed dictionary as a pandas dataframe.
+    '''
+
     regress_model_dict = {
     'Baseline':
     {
@@ -105,9 +111,45 @@ def regression_eval_dict():
 
     return regress_model_dict
 
+def clustering_viz():
 
+  
+    # lets make a clustering object from sklearn
+    clustering_feats = ['alcohol', 'density', 'chlorides', 'volatile_acidity']
+    # Make a thing! Thats my favorite!
+    k_means_prototype = KMeans(n_clusters=4)
+    # fit the thing!!!!
+    k_means_prototype.fit(X_train_scaled[clustering_feats])
+    # use the thing
+    clusters = k_means_prototype.predict(
+        X_train_scaled[clustering_feats])
     
+    X_train_scaled['cluster_assigned'] = clusters
 
+    fig, axs = plt.subplots(1, 2, figsize=(15, 10))
+
+    for quality, subset in X_train_scaled.groupby('quality'):
+        axs[0].scatter(subset.alcohol,
+                    subset.density,
+                    label=quality)
+    axs[0].legend()
+    axs[0].set(title='Actual Quality')
+
+    for cluster in X_train_scaled.cluster_assigned.unique():
+        axs[1].scatter(X_train_scaled[X_train_scaled.cluster_assigned == cluster].alcohol,
+                X_train_scaled[X_train_scaled.cluster_assigned == cluster].density,
+                label=cluster)
+    axs[1].legend()
+    axs[1].set(title='Cluster Assignment')
+
+    plt.show()
+
+def test_best_model():
+
+    rf = RandomForestClassifier(max_depth=4)
+    rf.fit(X_train, y_train['quality'])
+    test_score = rf.score(X_test, y_test['quality'])
+    print(f'Test Dataset Accuracy Score: {test_score}')
 
 
 
