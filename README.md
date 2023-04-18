@@ -1,7 +1,7 @@
 # Wine Project: Clustering
 
 ## Description
-- This project will use clustering methods in combination with supervised machine learning algorithms to predict the quiality of wine using a dataset acquired from data.world. It will go through the data science pipeline and create a model that accurately predicts the quality of wine.
+- This project will use clustering methods in combination with supervised machine learning algorithms to predict the quality of wine using a dataset acquired from data.world. It will go through the data science pipeline and create a model that accurately predicts the quality of wine.
 
 ## Goals
 - Predict the quality of wine using features in the dataset
@@ -9,7 +9,8 @@
   - Deliver a technical report that a data scientist can read through and understand 
 
 ## Initial Questions
-TBD
+What is the distribution of wine quality?
+What is the relationship between wine quality and the features in the dataset?
 
 ## Plan
 - Acquire data from data.world
@@ -29,18 +30,19 @@ TBD
 ## Data Dictionary
 | Feature | Definition | 
 |:--------|:-----------|
-| 1 - fixed acidity | |
-|2 - volatile acidity | |
-|3 - citric acid | |
-|4 - residual sugar | |
-|5 - chlorides | |
-|6 - free sulfur dioxide | |
-|7 - total sulfur dioxide | |
-|8 - density | |
-|9 - pH | |
-|10 - sulphatesv | |
-|11 - alcohol | |
-|12 - quality (score between 0 and 10)||
+| 1 - fixed acidity | a measure of low volatility acids in wine|
+|2 - volatile acidity | a measure of a wines volatile or gasous acidity |
+|3 - citric acid | a measure of citric acid |
+|4 - residual sugar | a measure of sweetness, usually g/L |
+|5 - chlorides | a measure of chlorides in wine, usually mg/L|
+|6 - free sulfur dioxide | amount of sulphur dioxide ions that re not chemically bound to other chemicals, usually mg/L|
+|7 - total sulfur dioxide | the total amount of sulfur dioxide (includes free sulfur dioxide), measured in mg/L |
+|8 - density | the density of the wine, g/mL|
+|9 - pH | the pH level |
+|10 - sulphates | the amount of sulphates, mg/L |
+|11 - alcohol | alcohol by volume|
+|12 - quality | quality from 4-7 |
+|13 - red or white | the color of the wine|
 
 
 ## Steps to Reproduce
@@ -49,7 +51,7 @@ TBD
 4. Run notebook
 
 ## Takeaways
-- TBD
+- 
 
 ## Recommendations
-- TBD
+- 
