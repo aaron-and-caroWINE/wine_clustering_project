@@ -131,7 +131,6 @@ def clustering_viz():
     
     X_train_scaled['cluster_assigned'] = clusters
     X_train_scaled['quality'] = y_train.quality
-    print(X_train_scaled.head())
 
     sns.set_palette('rocket')
 
