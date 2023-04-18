@@ -140,7 +140,7 @@ def get_dummies(df):
                             drop_first=True)], axis=1)
     df = df.drop(columns=['red_or_white'])
     df = df.rename(columns={'red_or_white_white': 'white_wine'})
-    print(df)
+
     return df
 
 def scale_data(train, 
@@ -197,8 +197,6 @@ def wrangle_wine():
                                'residual sugar': 'residual_sugar',
                                'free sulfur dioxide': 'free_sulfur_dioxide',
                                 'total sulfur dioxide': 'total_sulfur_dioxide'})
-
-    print(df.columns)
 
     # removes outliers from all columns except for the string 'red_or-white' column
     df = remove_outliers(df, k=1.5)

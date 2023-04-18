@@ -232,8 +232,12 @@ def preprocess_clustering_wine():
 #     test['is_high_quality'] = (test.quality == 7) | (test.quality == 6)
     
     # set list of num columns
-    num_cols = train.drop('quality', 'red_or_white')
-    
+    num_cols = train.columns.to_list()
+    print(num_cols)
+    num_cols.remove('quality')
+    num_cols.remove('white_wine')
+    print(num_cols)
+
     # xtrain, ytrain
     X_train = train[num_cols]
     y_train = train[['quality']]
