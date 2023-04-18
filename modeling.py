@@ -133,6 +133,8 @@ def clustering_viz():
 
     fig, axs = plt.subplots(1, 2, figsize=(15, 10))
 
+    sns.set_palette('rocket')
+
     for quality, subset in X_train_scaled.groupby('quality'):
         axs[0].scatter(subset.alcohol,
                     subset.density,
