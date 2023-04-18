@@ -130,11 +130,13 @@ def clustering_viz():
         X_train_scaled[clustering_feats])
     
     X_train_scaled['cluster_assigned'] = clusters
-
-    fig, axs = plt.subplots(1, 2, figsize=(15, 10))
+    X_train_scaled['quality'] = y_train.quality
+    print(X_train_scaled.head())
 
     sns.set_palette('rocket')
 
+    fig, axs = plt.subplots(1, 2, figsize=(15, 10))
+    
     for quality, subset in X_train_scaled.groupby('quality'):
         axs[0].scatter(subset.alcohol,
                     subset.density,

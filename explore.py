@@ -30,6 +30,7 @@ def quality_dis(train):
     plt.xlabel('Wine Qualities')
     plt.ylabel('Wine Count')
     plt.show()
+    return 
 
     
 def volatile_acidity_vis(train):
