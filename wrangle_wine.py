@@ -168,7 +168,7 @@ def remove_outliers(df, k=1.5):
         lower_fence = col_qs[col][0.25] - (iqr*k)
         
         # calculates the upper fence
-        upper_fence = col_qs[col][0.75] + (iqr*k)'
+        upper_fence = col_qs[col][0.75] + (iqr*k)
         
         # remove outliers from df for each col
         df = df[(df[col] > lower_fence) & (df[col] < upper_fence)]
@@ -292,97 +292,3 @@ def wrangle_wine():
 
     # return
     return train, validate, test, train_scaled, validate_scaled, test_scaled
-
-# --------------------- Visualizations ------------------------
-
-def bivariate_visulization(df, target):
-    
-    cat_cols, num_cols = [], []
-    
-    for col in df.columns:
-        if df[col].dtype == "o":
-            cat_cols.append(col)
-        else:
-            if df[col].nunique() < 10:
-                cat_cols.append(col)
-            else: 
-                num_cols.append(col)
-                
-    print(f'Numeric Columns: {num_cols}')
-    print(f'Categorical Columns: {cat_cols}')
-    explore_cols = cat_cols + num_cols
-
-    for col in explore_cols:
-        if col in cat_cols:
-            if col != target:
-                print(f'Bivariate assessment of feature {col}:')
-                sns.barplot(data = df, x = df[col], y = df[target], palette='crest')
-                plt.show()
-
-        if col in num_cols:
-            if col != target:
-                print(f'Bivariate feature analysis of feature {col}: ')
-                plt.scatter(x = df[col], y = df[target], color='turquoise')
-                plt.axhline(df[target].mean(), ls=':', color='red')
-                plt.axvline(df[col].mean(), ls=':', color='red')
-                plt.show()
-
-    print('_____________________________________________________')
-    print('_____________________________________________________')
-    print()
-
-def univariate_visulization(df):
-    
-    cat_cols, num_cols = [], []
-    for col in df.columns:
-        if df[col].dtype == "o":
-            cat_cols.append(col)
-        else:
-            if df[col].nunique() < 5:
-                cat_cols.append(col)
-            else: 
-                num_cols.append(col)
-                
-    explore_cols = cat_cols + num_cols
-    print(f'cat_cols: {cat_cols}')
-    print(f'num_cols: {num_cols}')
-    for col in explore_cols:
-        
-        if col in cat_cols:
-            print(f'Univariate assessment of feature {col}:')
-            sns.countplot(data=df, x=col, color='turquoise', edgecolor='black')
-            plt.show()
-
-        if col in num_cols:
-            print(f'Univariate feature analysis of feature {col}: ')
-            plt.hist(df[col], color='turquoise', edgecolor='black')
-            plt.show()
-            df[col].describe()
-    print('_____________________________________________________')
-    print('_____________________________________________________')
-    print()
-
-def viz_explore(train, target):
-
-    univariate_visulization(train)
-
-    bivariate_visulization(train, target)
-
-    corr = train.corr(method='spearman')
-    plt.figure(figsize=(20,15))
-    plt.rc('font', size=14)
-    sns.heatmap(corr, cmap='crest', annot=True, mask=np.triu(corr))
-    plt.show()
-    
-def boxplot(train):
-    target = 'quality'
-    explore_cols = train.columns.to_list()
-
-    for col in explore_cols:
-        if col != target:
-            print(f'Bivariate assessment of feature {col}:')
-            sns.boxplot(data = train, x = train[target], y = train[col], palette='crest')
-            plt.show()
-    print('_____________________________________________________')
-    print('_____________________________________________________')
-    print()
