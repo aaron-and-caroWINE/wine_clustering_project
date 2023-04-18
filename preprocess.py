@@ -233,10 +233,8 @@ def preprocess_clustering_wine():
     
     # set list of num columns
     num_cols = train.columns.to_list()
-    print(num_cols)
     num_cols.remove('quality')
     num_cols.remove('white_wine')
-    print(num_cols)
 
     # xtrain, ytrain
     X_train = train[num_cols]
