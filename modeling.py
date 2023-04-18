@@ -16,6 +16,13 @@ X_train_scaled, X_validate_scaled, X_test_scaled, X_train, X_validate, X_test, y
 
 def classification_eval_dict():
 
+    '''
+    creates a dictionary containing the evaluation metrics for the classification models used with the 
+    clusters as a feature
+    
+     
+    '''
+
     class_model_dict = {
     'Baseline':
     {
