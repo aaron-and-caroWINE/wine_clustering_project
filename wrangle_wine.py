@@ -7,8 +7,6 @@ import seaborn as sns
 from sklearn.model_selection import train_test_split
 from sklearn.impute import SimpleImputer
 from sklearn.preprocessing import MinMaxScaler, RobustScaler, StandardScaler, QuantileTransformer
-from sklearn.feature_selection import SelectKBest, RFE, f_regression, SequentialFeatureSelector
-from sklearn.linear_model import LinearRegression
 import numpy as np
 
 from IPython.display import display
